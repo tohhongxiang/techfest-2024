@@ -6,22 +6,24 @@ import {
 	IconMessageCircle,
 	IconSettings,
 } from "@tabler/icons-react";
-import Summary from "./_components/Summary";
 import { Suspense } from "react";
-import TextSkeleton from "./_components/skeletons/TextSkeleton";
-import VideoSkeleton from "./_components/skeletons/VideoSkeleton";
-import VideoPlayer from "./_components/VideoPlayer";
-import AudioTranscription from "./_components/AudioTranscription";
-import AdditionalReadings from "./_components/AdditionalReadings";
-import ListSkeleton from "./_components/skeletons/ListSkeleton";
+import AdditionalReadings from "../_components/AdditionalReadings";
+import AudioTranscription from "../_components/AudioTranscription";
+import Summary from "../_components/Summary";
+import VideoPlayer from "../_components/VideoPlayer";
+import ListSkeleton from "../_components/skeletons/ListSkeleton";
+import TextSkeleton from "../_components/skeletons/TextSkeleton";
+import VideoSkeleton from "../_components/skeletons/VideoSkeleton";
 
-export default function SummaryPage() {
+export default function SummaryPage({ params }: { params: { id: string }}) {
+    const id = params.id
+
 	return (
 		<Stack>
 			<Title>Video Title</Title>
 			<Suspense fallback={<VideoSkeleton />}>
 				<div className="h-[500px]">
-					<VideoPlayer />
+					<VideoPlayer id={id} />
 				</div>
 			</Suspense>
 			<Tabs defaultValue="summary">
@@ -46,21 +48,21 @@ export default function SummaryPage() {
 				<Tabs.Panel value="summary">
 					<Container fluid className="p-4">
 						<Suspense fallback={<TextSkeleton />}>
-							<Summary />
+							<Summary id={id} />
 						</Suspense>
 					</Container>
 				</Tabs.Panel>
 				<Tabs.Panel value="transcription">
 					<Container fluid className="p-4">
 						<Suspense fallback={<TextSkeleton />}>
-							<AudioTranscription />
+							<AudioTranscription id={id} />
 						</Suspense>
 					</Container>
 				</Tabs.Panel>
 				<Tabs.Panel value="additional-readings">
 					<Container fluid className="p-4">
 						<Suspense fallback={<ListSkeleton />}>
-							<AdditionalReadings />
+							<AdditionalReadings id={id} />
 						</Suspense>
 					</Container>
 				</Tabs.Panel>

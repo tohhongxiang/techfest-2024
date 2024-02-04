@@ -12,10 +12,13 @@ import {
 	Stepper,
 	Code,
 	Group,
+	Loader,
+	Flex,
 } from "@mantine/core";
 import { useState } from "react";
 import { useForm } from "@mantine/form";
 import ReactPlayer from "react-player";
+import { useRouter } from "next/navigation";
 
 export default function HomePage() {
 	const [currentStep, setCurrentStep] = useState(0);
@@ -74,12 +77,15 @@ export default function HomePage() {
 		);
 	};
 
+	const router = useRouter();
 	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 
-		nextStep()
+		nextStep();
 		if (currentStep === 1) {
-			console.log(form.values)
+			console.log(form.values);
+
+			// router.push("/summaries/123")
 		}
 	};
 
@@ -151,14 +157,26 @@ export default function HomePage() {
 							</Container>
 						</Stepper.Step>
 						<Stepper.Completed>
-							<Code block mt="xl">
-								{JSON.stringify(form.values, null, 2)}
-							</Code>
+							<Stack>
+								<Code block mt="xl">
+									{JSON.stringify(form.values, null, 2)}
+								</Code>
+								<Alert color="green">
+									<Flex gap="md" align="center">
+										<Loader /> 
+										<Text>Generating summary...</Text>
+									</Flex>
+								</Alert>
+							</Stack>
 						</Stepper.Completed>
 					</Stepper>
 					<Group justify="flex-end" mt="xl">
 						{currentStep !== 0 && (
-							<Button variant="default" onClick={prevStep}>
+							<Button
+								variant="default"
+								onClick={prevStep}
+								disabled={currentStep === 2}
+							>
 								Back
 							</Button>
 						)}

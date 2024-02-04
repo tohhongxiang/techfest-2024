@@ -28,9 +28,9 @@ const links = [
 		href: "/",
 	},
 	{
-		label: "Generated Summary",
+		label: "Generated Summaries",
 		icon: <IconBook2 size="1rem" stroke={1.5} />,
-		href: "/summary",
+		href: "/summaries",
 	},
 	{
 		label: "About Us",

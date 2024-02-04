@@ -1,8 +1,8 @@
 import getAdditionalReadings from "@/api/getAdditionalReadings";
 import { List } from "@mantine/core";
 
-export default async function AdditionalReadings() {
-    const data = await getAdditionalReadings("xcvb=")
+export default async function AdditionalReadings({ id = "" }: { id: string }) {
+    const data = await getAdditionalReadings(id)
 
     return (
         <List className="list-disc">
