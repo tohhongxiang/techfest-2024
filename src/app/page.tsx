@@ -12,11 +12,8 @@ import {
 	Stepper,
 	Code,
 	Group,
-	Center,
-	LoadingOverlay,
 } from "@mantine/core";
-import { IconArrowRight } from "@tabler/icons-react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useForm } from "@mantine/form";
 import ReactPlayer from "react-player";
 

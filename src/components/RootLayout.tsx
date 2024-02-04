@@ -13,12 +13,31 @@ import { useDisclosure } from "@mantine/hooks";
 import {
 	IconAddressBook,
 	IconBook,
+	IconBook2,
 	IconBrandDisqus,
 	IconBrandGithub,
 	IconHome2,
 } from "@tabler/icons-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+
+const links = [
+	{
+		label: "Lecture Summarizer",
+		icon: <IconHome2 size="1rem" stroke={1.5} />,
+		href: "/",
+	},
+	{
+		label: "Generated Summary",
+		icon: <IconBook2 size="1rem" stroke={1.5} />,
+		href: "/summary",
+	},
+	{
+		label: "About Us",
+		icon: <IconAddressBook size="1rem" stroke={1.5} />,
+		href: "/about",
+	},
+];
 
 export default function RootLayout({
 	children,
@@ -52,22 +71,16 @@ export default function RootLayout({
 			</AppShell.Header>
 			<AppShell.Navbar p="md">
 				<AppShell.Section grow component={ScrollArea}>
-					<NavLink
-						component={Link}
-						href="/"
-						active={path === "/"}
-						label="Lecture Summariser"
-						leftSection={<IconHome2 size="1rem" stroke={1.5} />}
-					/>
-					<NavLink
-						component={Link}
-						href="/about"
-						active={path === "/about"}
-						label="About Us"
-						leftSection={
-							<IconAddressBook size="1rem" stroke={1.5} />
-						}
-					/>
+					{links.map((link) => (
+						<NavLink
+							key={link.href}
+							component={Link}
+							href={link.href}
+							active={path === link.href}
+							label={link.label}
+							leftSection={link.icon}
+						/>
+					))}
 				</AppShell.Section>
 				<AppShell.Section className="border-t border-gray-400/20 pt-2">
 					<Flex justify="flex-end">
