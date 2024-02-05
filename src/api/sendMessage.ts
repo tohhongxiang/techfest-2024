@@ -1,10 +1,17 @@
 import { Message } from "@/types/Message";
+import { apiEndpoint } from "./constants";
 
-export default async function sendMessage(message: string): Promise<Message> {
-	await new Promise((r) => setTimeout(r, 500));
+export default async function sendMessage(
+    message: string,
+    type: "file" | "youtube",
+    id: string
+): Promise<Message> {
+    const data = (await fetch(
+        `${apiEndpoint}/api/${type}/${id}/chat?question=${message}`
+    ).then((res) => res.json())) as { reply: string; id: string };
 
-	return {
-		text: "This is a reply to the message: " + message,
-		sender: "bot",
-	};
+    return {
+        text: data.reply,
+        sender: "bot",
+    };
 }

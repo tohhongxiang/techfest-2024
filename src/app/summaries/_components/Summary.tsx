@@ -5,22 +5,22 @@ import { serialize } from "next-mdx-remote/serialize";
 import { MDXRemote } from "next-mdx-remote";
 
 export default async function Summary({
-  id = "",
-  type = "youtube",
+    id = "",
+    videoType = "youtube",
 }: {
-  id: string;
-  type: "youtube" | "file";
+    id: string;
+    videoType: "youtube" | "file";
 }) {
-  const data = await getSummary(id, type);
-  const mdxSource = await serialize(data.summary, {
-    mdxOptions: {
-      development: process.env.NODE_ENV === "development",
-    },
-  });
+    const data = await getSummary(id, videoType);
+    const mdxSource = await serialize(data.summary, {
+        mdxOptions: {
+            development: process.env.NODE_ENV === "development",
+        },
+    });
 
-  return (
-    <Container className="prose">
-      <MDXRemote {...mdxSource} />
-    </Container>
-  );
+    return (
+        <Container className="prose">
+            <MDXRemote {...mdxSource} />
+        </Container>
+    );
 }

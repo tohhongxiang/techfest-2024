@@ -1,2 +1,3 @@
-const apiEndpoint = "https://jsonplaceholder.typicode.com";
+const apiEndpoint = "";
+
 export { apiEndpoint };
