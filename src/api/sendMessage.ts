@@ -6,6 +6,13 @@ export default async function sendMessage(
     type: "file" | "youtube",
     id: string
 ): Promise<Message> {
+    if (apiEndpoint.length === 0) {
+        return {
+            text: "This is a reply to: " + message,
+            sender: "bot",
+        };
+    }
+
     const data = (await fetch(
         `${apiEndpoint}/api/${type}/${id}/chat?question=${message}`
     ).then((res) => res.json())) as { reply: string; id: string };
