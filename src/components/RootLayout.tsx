@@ -1,15 +1,13 @@
 "use client";
 
-import ChatSection from "@/app/summaries/_components/ChatSection";
 import {
 	ActionIcon,
 	AppShell,
-	Box,
 	Burger,
 	Flex,
 	NavLink,
 	ScrollArea,
-	Tooltip,
+	Tooltip
 } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import {

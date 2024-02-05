@@ -3,22 +3,22 @@
 import {
 	Alert,
 	Button,
+	Code,
 	Container,
 	FileInput,
+	Flex,
+	Group,
+	Loader,
 	Stack,
+	Stepper,
 	Text,
 	TextInput,
 	Title,
-	Stepper,
-	Code,
-	Group,
-	Loader,
-	Flex,
 } from "@mantine/core";
-import { useState } from "react";
 import { useForm } from "@mantine/form";
-import ReactPlayer from "react-player";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
+import ReactPlayer from "react-player";
 
 export default function HomePage() {
 	const [currentStep, setCurrentStep] = useState(0);
@@ -170,7 +170,7 @@ export default function HomePage() {
 							</Stack>
 						</Stepper.Completed>
 					</Stepper>
-					<Group justify="flex-end" mt="xl">
+					<Group justify="flex-end" mt="xl" py="md">
 						{currentStep !== 0 && (
 							<Button
 								variant="default"
