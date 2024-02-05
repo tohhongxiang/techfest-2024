@@ -87,7 +87,6 @@ export default function HomePage() {
             if (form.values.youtubeURL.length > 0) {
                 const url = new URL(form.values.youtubeURL);
                 const videoID = url.searchParams.get("v");
-                console.log(videoID);
                 router.push(`/summaries/youtube/${videoID}`);
             }
         }
@@ -101,14 +100,15 @@ export default function HomePage() {
                         Lecture to TokTik
                     </Title>
                     <Alert variant="light" color="blue">
-                        LTTT is a Generative AI tool that generates summary
-                        shorts of lecture inputs. It can also learn from the
-                        lecture content and provide clarifications to content.
+                        <strong>lAIs</strong> is a generative AI tool that
+                        generates summaries of lecture videos. It can also learn
+                        from the lecture content and provide clarifications to
+                        content.
                     </Alert>
                     <Stepper active={currentStep} className="p-8">
                         <Stepper.Step
-                            label="Choose URL or File"
-                            description="Input either a Youtube URL, or upload a file"
+                            label="Choose URL"
+                            description="Input a Youtube URL"
                         >
                             <Stack gap="md">
                                 <TextInput
@@ -116,7 +116,7 @@ export default function HomePage() {
                                     placeholder="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
                                     {...form.getInputProps("youtubeURL")}
                                 />
-                                <Text c="dimmed" className="text-center">
+                                {/* <Text c="dimmed" className="text-center">
                                     OR
                                 </Text>
                                 <FileInput
@@ -126,7 +126,7 @@ export default function HomePage() {
                                     placeholder="xxx.mp4, xxx.mov"
                                     {...form.getInputProps("uploadedFile")}
                                     accept=".mp4,.mov"
-                                />
+                                /> */}
                             </Stack>
                         </Stepper.Step>
                         <Stepper.Step
@@ -162,9 +162,6 @@ export default function HomePage() {
                         </Stepper.Step>
                         <Stepper.Completed>
                             <Stack>
-                                <Code block mt="xl">
-                                    {JSON.stringify(form.values, null, 2)}
-                                </Code>
                                 <Alert color="green">
                                     <Flex gap="md" align="center">
                                         <Loader />
