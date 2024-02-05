@@ -21,20 +21,21 @@ import {
     IconTestPipe,
 } from "@tabler/icons-react";
 import { Suspense } from "react";
-import AdditionalReadings from "../_components/AdditionalReadings";
-import AudioTranscription from "../_components/AudioTranscription";
-import Summary from "../_components/Summary";
-import VideoPlayer from "../_components/VideoPlayer";
-import ListSkeleton from "../_components/skeletons/ListSkeleton";
-import TextSkeleton from "../_components/skeletons/TextSkeleton";
-import VideoSkeleton from "../_components/skeletons/VideoSkeleton";
-import ChatSection from "../_components/ChatSection";
-import TestComponent from "../_components/TestComponent";
-import { ErrorBoundary } from "next/dist/client/components/error-boundary";
-import Error from "./error";
+import AdditionalReadings from "../../_components/AdditionalReadings";
+import AudioTranscription from "../../_components/AudioTranscription";
+import Summary from "../../_components/Summary";
+import VideoPlayer from "../../_components/VideoPlayer";
+import ListSkeleton from "../../_components/skeletons/ListSkeleton";
+import TextSkeleton from "../../_components/skeletons/TextSkeleton";
+import VideoSkeleton from "../../_components/skeletons/VideoSkeleton";
+import ChatSection from "../../_components/ChatSection";
 
-export default function SummaryPage({ params }: { params: { id: string } }) {
-    const [videoType, id] = params.id.split("-");
+export default function SummaryPage({
+    params,
+}: {
+    params: { id: string; videoType: "youtube" | "file" };
+}) {
+    const { videoType, id } = params;
 
     return (
         <Flex className="h-full">
