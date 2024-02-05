@@ -1,8 +1,10 @@
 "use client";
 
+import ChatSection from "@/app/summaries/_components/ChatSection";
 import {
 	ActionIcon,
 	AppShell,
+	Box,
 	Burger,
 	Flex,
 	NavLink,
@@ -56,6 +58,7 @@ export default function RootLayout({
 				collapsed: { mobile: !opened },
 			}}
 			padding="md"
+			className="h-screen"
 		>
 			<AppShell.Header>
 				<div className="flex p-4">
@@ -115,7 +118,7 @@ export default function RootLayout({
 					</Flex>
 				</AppShell.Section>
 			</AppShell.Navbar>
-			<AppShell.Main>{children}</AppShell.Main>
+			<AppShell.Main className="w-full h-full">{children}</AppShell.Main>
 		</AppShell>
 	);
 }

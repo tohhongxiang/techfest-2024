@@ -85,7 +85,7 @@ export default function HomePage() {
 		if (currentStep === 1) {
 			console.log(form.values);
 
-			// router.push("/summaries/123")
+			router.push("/summaries/123")
 		}
 	};
 
