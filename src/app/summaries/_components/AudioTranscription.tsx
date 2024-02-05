@@ -1,26 +1,39 @@
-import getAudioTranscription from "@/api/getAudioTranscription";
-import { serialize } from "next-mdx-remote/serialize";
-import { MDXRemote } from "next-mdx-remote";
-import { Container } from "@mantine/core";
+"use client";
 
-export default async function AudioTranscription({
-    id = "",
-    videoType = "youtube",
+import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
+import { Alert, Container } from "@mantine/core";
+import TextSkeleton from "./skeletons/TextSkeleton";
+import getAudioTranscription from "@/api/getAudioTranscription";
+import useSWR from "swr";
+
+export default function AudioTranscription({
+    id,
+    videoType,
 }: {
     id: string;
     videoType: "file" | "youtube";
 }) {
-    const data = await getAudioTranscription(id, videoType);
+    const { data, error, isLoading } = useSWR([id, videoType, "audio"], () =>
+        getAudioTranscription(id, videoType)
+    );
 
-    const mdxSource = await serialize(data.transcription, {
-        mdxOptions: {
-            development: process.env.NODE_ENV === "development",
-        },
-    });
+    if (isLoading) {
+        return (
+            <Container className="prose">
+                <TextSkeleton />
+            </Container>
+        );
+    }
 
     return (
         <Container className="prose">
-            <MDXRemote {...mdxSource} />
+            {error ? (
+                <Alert color="red" title="Error">
+                    An unexpected error has occurred: {error}
+                </Alert>
+            ) : (
+                <MDXRemote {...data?.transcription!} />
+            )}
         </Container>
     );
 }

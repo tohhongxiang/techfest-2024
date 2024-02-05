@@ -1,26 +1,40 @@
-import getSummary from "@/api/getSummary";
-import { Container } from "@mantine/core";
+"use client";
 
-import { serialize } from "next-mdx-remote/serialize";
+import { Alert, Container } from "@mantine/core";
+
 import { MDXRemote } from "next-mdx-remote";
+import TextSkeleton from "./skeletons/TextSkeleton";
+import useSWR from "swr";
+import getSummary from "@/api/getSummary";
 
-export default async function Summary({
-    id = "",
-    videoType = "youtube",
+export default function Summary({
+    id,
+    videoType,
 }: {
     id: string;
     videoType: "youtube" | "file";
 }) {
-    const data = await getSummary(id, videoType);
-    const mdxSource = await serialize(data.summary, {
-        mdxOptions: {
-            development: process.env.NODE_ENV === "development",
-        },
-    });
+    const { data, error, isLoading } = useSWR([id, videoType, "summary"], () =>
+        getSummary(id, videoType)
+    );
+
+    if (isLoading) {
+        return (
+            <Container className="prose">
+                <TextSkeleton />
+            </Container>
+        );
+    }
 
     return (
         <Container className="prose">
-            <MDXRemote {...mdxSource} />
+            {error ? (
+                <Alert color="red" title="Error">
+                    An unexpected error has occurred: {error}
+                </Alert>
+            ) : (
+                <MDXRemote {...data?.summary!} />
+            )}
         </Container>
     );
 }

@@ -32,13 +32,19 @@ import TextSkeleton from "../../_components/skeletons/TextSkeleton";
 import VideoSkeleton from "../../_components/skeletons/VideoSkeleton";
 import ChatSection from "../../_components/ChatSection";
 import ReviewQuestions from "../../_components/ReviewQuestions";
+import useSWR from "swr";
+import getSummary from "@/api/getSummary";
+import getAudioTranscription from "@/api/getAudioTranscription";
 
 export default function SummaryPage({
     params,
 }: {
     params: { id: string; videoType: "youtube" | "file" };
 }) {
-    const { videoType, id } = params;
+    const { videoType, id } = params as {
+        id: string;
+        videoType: "youtube" | "file";
+    };
 
     return (
         <Flex className="h-full">
@@ -76,38 +82,23 @@ export default function SummaryPage({
                         </Tabs.List>
                         <Tabs.Panel value="summary">
                             <Container fluid className="p-4">
-                                <Suspense fallback={<TextSkeleton />}>
-                                    <Summary
-                                        id={id}
-                                        videoType={
-                                            videoType as "file" | "youtube"
-                                        }
-                                    />
-                                </Suspense>
+                                <Summary id={id} videoType={videoType} />
                             </Container>
                         </Tabs.Panel>
                         <Tabs.Panel value="transcription">
                             <Container fluid className="p-4">
-                                <Suspense fallback={<TextSkeleton />}>
-                                    <AudioTranscription
-                                        id={id}
-                                        videoType={
-                                            videoType as "file" | "youtube"
-                                        }
-                                    />
-                                </Suspense>
+                                <AudioTranscription
+                                    id={id}
+                                    videoType={videoType}
+                                />
                             </Container>
                         </Tabs.Panel>
                         <Tabs.Panel value="review-questions">
                             <Container fluid className="p-4">
-                                <Suspense fallback={<ListSkeleton />}>
-                                    <ReviewQuestions
-                                        id={id}
-                                        videoType={
-                                            videoType as "file" | "youtube"
-                                        }
-                                    />
-                                </Suspense>
+                                <ReviewQuestions
+                                    id={id}
+                                    videoType={videoType as "file" | "youtube"}
+                                />
                             </Container>
                         </Tabs.Panel>
                     </Tabs>
