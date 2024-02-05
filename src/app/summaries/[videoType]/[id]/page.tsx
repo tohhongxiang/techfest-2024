@@ -19,6 +19,8 @@ import {
     IconSettings,
     IconMessage,
     IconTestPipe,
+    IconTestPipe2,
+    IconBook2,
 } from "@tabler/icons-react";
 import { Suspense } from "react";
 import AdditionalReadings from "../../_components/AdditionalReadings";
@@ -29,6 +31,7 @@ import ListSkeleton from "../../_components/skeletons/ListSkeleton";
 import TextSkeleton from "../../_components/skeletons/TextSkeleton";
 import VideoSkeleton from "../../_components/skeletons/VideoSkeleton";
 import ChatSection from "../../_components/ChatSection";
+import ReviewQuestions from "../../_components/ReviewQuestions";
 
 export default function SummaryPage({
     params,
@@ -65,10 +68,10 @@ export default function SummaryPage({
                                 Audio Transcription
                             </Tabs.Tab>
                             <Tabs.Tab
-                                value="additional-readings"
-                                leftSection={<IconSettings />}
+                                value="review-questions"
+                                leftSection={<IconBook2 />}
                             >
-                                Additional Readings
+                                Review Questions
                             </Tabs.Tab>
                         </Tabs.List>
                         <Tabs.Panel value="summary">
@@ -95,10 +98,15 @@ export default function SummaryPage({
                                 </Suspense>
                             </Container>
                         </Tabs.Panel>
-                        <Tabs.Panel value="additional-readings">
+                        <Tabs.Panel value="review-questions">
                             <Container fluid className="p-4">
                                 <Suspense fallback={<ListSkeleton />}>
-                                    <AdditionalReadings id={id} />
+                                    <ReviewQuestions
+                                        id={id}
+                                        videoType={
+                                            videoType as "file" | "youtube"
+                                        }
+                                    />
                                 </Suspense>
                             </Container>
                         </Tabs.Panel>
