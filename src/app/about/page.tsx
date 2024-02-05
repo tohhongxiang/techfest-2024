@@ -26,18 +26,41 @@ export default function AboutPage() {
     return (
         <Stack gap="lg">
             <Container className="flex flex-col gap-y-8 mb-16">
-                <Title className="text-center">About Us</Title>
-                <Text>
-                    LTTT is a Generative AI tool that generates summary shorts
-                    of lecture inputs. It can also learn from the lecture
-                    content and provide clarifications to content. With a
-                    YouTube URL or a video file, you can generate a 1-minute
-                    long video summarising key content from the video lecture.
-                    Also, transcriptions and further readings will be provided.
-                    Plus, the Prof. LTTT virtual assistant will learn the
-                    content with you, and can provide additional assistance to
-                    aid your understanding, or recommend additional readings to
-                    supplement your learning.
+                <h1
+                    className="text-center text-8xl mt-4 mb-0 italic"
+                    style={{ fontFamily: `"Pacifico", cursive` }}
+                >
+                    lAIs
+                </h1>
+                <Text className="text-center">
+                    <i>Gothic for "I know"</i>.
+                </Text>
+            </Container>
+            <Container className="flex flex-col mb-16">
+                <Title className="text-center" mb="lg">
+                    About Us
+                </Title>
+                <Text mb="md">
+                    lAIs is an innovative Generative AI tool designed to
+                    transform lengthy lectures into concise and digestible
+                    formats. Using advanced natural language processing and
+                    summarization techniques, lAIs analyzes extensive lecture
+                    content and generates bite-sized summaries, extracting key
+                    points and crucial information.
+                </Text>
+                <Text mb="md">
+                    Moreover, lAIs goes beyond simple summarization by
+                    intelligently formulating relevant test questions based on
+                    the lecture content. This feature helps learners reinforce
+                    their understanding, facilitating effective study sessions.
+                </Text>
+                <Text mb="md">
+                    Whether you're a student preparing for exams or a
+                    professional looking to grasp essential concepts quickly,
+                    lAIs streamlines the learning process by making complex
+                    information accessible and actionable. Say goodbye to
+                    information overload and hello to efficient, personalized
+                    learning with lAIs.
                 </Text>
             </Container>
             <Container className="flex flex-col gap-y-8 mb-16">
