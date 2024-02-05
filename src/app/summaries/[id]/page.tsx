@@ -30,6 +30,8 @@ import TextSkeleton from "../_components/skeletons/TextSkeleton";
 import VideoSkeleton from "../_components/skeletons/VideoSkeleton";
 import ChatSection from "../_components/ChatSection";
 import TestComponent from "../_components/TestComponent";
+import { ErrorBoundary } from "next/dist/client/components/error-boundary";
+import Error from "./error";
 
 export default function SummaryPage({ params }: { params: { id: string } }) {
     const [videoType, id] = params.id.split("-");
@@ -67,12 +69,6 @@ export default function SummaryPage({ params }: { params: { id: string } }) {
                             >
                                 Additional Readings
                             </Tabs.Tab>
-                            <Tabs.Tab
-                                value="test"
-                                leftSection={<IconTestPipe />}
-                            >
-                                Test
-                            </Tabs.Tab>
                         </Tabs.List>
                         <Tabs.Panel value="summary">
                             <Container fluid className="p-4">
@@ -102,13 +98,6 @@ export default function SummaryPage({ params }: { params: { id: string } }) {
                             <Container fluid className="p-4">
                                 <Suspense fallback={<ListSkeleton />}>
                                     <AdditionalReadings id={id} />
-                                </Suspense>
-                            </Container>
-                        </Tabs.Panel>
-                        <Tabs.Panel value="test">
-                            <Container fluid className="p-4">
-                                <Suspense fallback={<ListSkeleton />}>
-                                    <TestComponent />
                                 </Suspense>
                             </Container>
                         </Tabs.Panel>
