@@ -97,7 +97,7 @@ export default function HomePage() {
             <form onSubmit={handleSubmit}>
                 <Stack>
                     <Title order={1} className="text-center">
-                        Lecture to TokTik
+                        lAIs
                     </Title>
                     <Alert variant="light" color="blue">
                         <strong>lAIs</strong> is a generative AI tool that
