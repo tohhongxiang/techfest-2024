@@ -50,7 +50,6 @@ export default function SummaryPage({
         <Flex className="h-full">
             <Stack className="grow overflow-auto">
                 <ScrollArea className="pr-4">
-                    <Title>Video Title</Title>
                     <Suspense fallback={<VideoSkeleton />}>
                         <div className="h-[500px]">
                             <VideoPlayer

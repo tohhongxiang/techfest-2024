@@ -8,9 +8,10 @@ export default async function getReviewQuestions(
         return {
             id,
             questions: [
-                "What is life?",
-                "Do fish get thirsty?",
-                "Why do we lift our hands when we knock on the door?",
+                "What is row reduction?",
+                "What is the definition of a basis?",
+                "How does Gaussian Elimination work?",
+                "Given 2 vectors, how do you tell if they are orthogonal?",
             ],
         };
     }

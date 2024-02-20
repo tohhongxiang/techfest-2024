@@ -8,7 +8,7 @@ export default async function sendMessage(
 ): Promise<Message> {
     if (apiEndpoint.length === 0) {
         return {
-            text: "This is a reply to: " + message,
+            text: "In chess, the knight has a unique L-shaped move. It can move two squares in one direction (either horizontally or vertically) and then one square perpendicular to that direction, or it can move two squares in one direction and then one square in the opposite direction. This distinct move allows the knight to jump over other pieces on the board.",
             sender: "bot",
         };
     }
